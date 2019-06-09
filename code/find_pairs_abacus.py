@@ -79,6 +79,6 @@ def compute_pairs_FOF_abacus_box(BoxID=0):
     h5f.close()
     return 
 
-for i in range(2):
+for i in range(0):
     compute_pairs_FOF_abacus_box(BoxID=i)
     
