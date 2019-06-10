@@ -4,9 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import h5py
 
-def compute_pairs_FOF_abacus_box(BoxID=0, v_limit=610):
-    pair_count = {}
-
+def load_box(BoxID=0):
     filename = '../data/pairs_box_{:02d}.hdf5'.format(BoxID)
     data = {}
     f = h5py.File(filename, 'r')
@@ -41,7 +39,12 @@ def compute_pairs_FOF_abacus_box(BoxID=0, v_limit=610):
     keys = ['vel_G_mag', 'vmax_G']
     for kk in keys:
         datos[kk] = data[kk][:]
+    return datos
         
+
+def compute_pairs_FOF_abacus_box(BoxID=0, v_limit=627):
+    pair_count = {}
+    datos = load_box(BoxID=BoxID)       
     
     fig = plt.figure(figsize=(16,24))
 
@@ -169,13 +172,14 @@ def compute_pairs_FOF_abacus_box(BoxID=0, v_limit=610):
     plt.savefig(figname, bbox_inches="tight")
     plt.close(fig)
     return pair_count
-    
-outfile = '../data/summary_pair_count.dat'
-f = open(outfile, 'w')
-for i in range(40):
-    counts = compute_pairs_FOF_abacus_box(BoxID=i)
-    f.write("{:d} {:d} {:d} {:d} {:d} {:f} {:f}\n".format(i, 
+
+def all_data():
+    outfile = '../data/summary_pair_count.dat'
+    f = open(outfile, 'w')
+    for i in range(40):
+        counts = compute_pairs_FOF_abacus_box(BoxID=i)
+        f.write("{:d} {:d} {:d} {:d} {:d} {:f} {:f}\n".format(i, 
                                                         counts['total_pair'], counts['total_halos'], 
                                                         counts['final_pair'], counts['final_halos'], 
                                                         counts['mean_vel_B'], counts['std_vel_B']))
-f.close()
+    f.close()
