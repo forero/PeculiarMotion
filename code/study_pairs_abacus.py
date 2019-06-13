@@ -66,8 +66,10 @@ def count_pairs_FOF_abacus_box(BoxID=0):
     pair_count['pair_high'] = np.count_nonzero(ii&jj)
     pair_count['individual_total'] = np.count_nonzero(ll)
     pair_count['individual_high'] = np.count_nonzero(ll&mm)
-    pair_count['mean_mu_total'] = np.mean(np.mean(data['mu'][ii]))
-    pair_count['mean_mu_high'] = np.mean(np.mean(data['mu'][ii&jj]))
+    pair_count['mean_mu_total'] = np.median(data['mu'][ii])
+    pair_count['mean_mu_high'] = np.median(data['mu'][ii&jj])
+    pair_count['std_mu_total'] = np.std(data['mu'][ii])
+    pair_count['std_mu_high'] = np.std(data['mu'][ii&jj])
     return pair_count
 
 def all_data():
@@ -75,12 +77,14 @@ def all_data():
     f = open(outfile, "w")
     for i in range(40):
         pair_count = count_pairs_FOF_abacus_box(BoxID=i)
-        f.write("{:d} {:d} {:d} {:d} {:d} {:f} {:f}\n".format(i, 
+        f.write("{:d} {:d} {:d} {:d} {:d} {:f} {:f} {:f} {:f}\n".format(i, 
                                                    pair_count['individual_total'], 
                                                    pair_count['individual_high'],
                                                    pair_count['pair_total'],
                                                    pair_count['pair_high'],
                                                    pair_count['mean_mu_total'],
-                                                   pair_count['mean_mu_high']))
+                                                   pair_count['mean_mu_high'],
+                                                   pair_count['std_mu_total'],
+                                                   pair_count['std_mu_high']))
     f.close()
     
