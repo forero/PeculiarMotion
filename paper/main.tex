@@ -1,5 +1,12 @@
 \documentclass[onecolumn]{aastex62}
 \submitjournal{ApJL}
+\newcommand{\hMpc}{{\ifmmode{h^{-1}{\rm Mpc}}\else{$h^{-1}$Mpc}\fi}}  
+\newcommand{\hGpc}{{\ifmmode{h^{-1}{\rm Gpc}}\else{$h^{-1}$Gpc}\fi}}  
+\newcommand{\hmpc}{{\ifmmode{h^{-1}{\rm Mpc}}\else{$h^{-1}$Mpc}\fi}}  
+\newcommand{\hkpc}{{\ifmmode{h^{-1}{\rm kpc}}\else{$h^{-1}$kpc}\fi}}  
+\newcommand{\hMsun}{{\ifmmode{h^{-1}{\rm {M_{\odot}}}}\else{$h^{-1}{\rm{M_{\odot}}}$}\fi}}  
+\newcommand{\kms}{{\ifmmode{{\rm km\, {s}^{-1}}}\else{km s$^{-1}$}\fi}}  
+
 \title{Our peculiar motion across the Universe}
 \shortauthors{Forero-Romero}
 
@@ -33,6 +40,23 @@ We
   Astrostatistics tools (1887)}   
 \section{Introduction}
 
+\section{Numerical Setup}
+We use simulations from the Abacus project \cite{abacus}. 
+
+We use the simulation boxes with size $L_{\rm box}=720$\hMpc simulated
+with $1440^3$ particles and a resulting particle mass of $\sim 1\times
+10^{10}$\hMpc. 
+We use the set of 41 boxes with different $\omega$CDM cosmological
+parameters which are phase-matched to isolate cosmology dependences. 
+
+
+\section{Sample Selection}
+
+We select all halos with a maximum circular velocity larger than $xx$\kms.
+
+\section{Results}
+
+\section{Conclusions}
 
 \cite{2009PhRvD..80d3005E}
 
@@ -58,21 +82,6 @@ We
 \label{fig:proba}
 \end{figure*} 
 
-\begin{figure*}
-\begin{center}
-  \includegraphics[width=0.4\textwidth]{cumulative_alignment_06.pdf}
-\end{center}
-\caption{Cumulative probability for the dot product between the unit
-  vector joining the two halos in the pair and the peculiar
-  velocity of the less massive halo.
-  Continous line: results for all pairs; dashed line: pairs where the
-  less massive halo moves with a pecular velocity larger than
-  $v_p=627\pm22$ km s$^{-1}$.
-  The vertical stripe shows the values for the MW and M31.
-  Halos with high peculiar velocities tend to be aligned in the
-  direction towards its partner.}
-\label{fig:alignment}
-\end{figure*}
 
 \begin{figure*}
 \begin{center}
@@ -97,10 +106,25 @@ We
 \label{fig:ratio_fast}
 \end{figure*}
 
+\begin{figure*}
+\begin{center}
+  \includegraphics[width=0.4\textwidth]{cumulative_alignment_06.pdf}
+\end{center}
+\caption{Cumulative probability for the dot product between the unit
+  vector joining the two halos in the pair and the peculiar
+  velocity of the less massive halo.
+  Continous line: results for all pairs; dashed line: pairs where the
+  less massive halo moves with a pecular velocity larger than
+  $v_p=627\pm22$ km s$^{-1}$.
+  The vertical stripe shows the values for the MW and M31.
+  Halos with high peculiar velocities tend to be aligned in the
+  direction towards its partner.}
+\label{fig:alignment}
+\end{figure*}
+
+
 
 \end{document}
-
-
 
 
 Large scale automatic detection and classification of astronomical
