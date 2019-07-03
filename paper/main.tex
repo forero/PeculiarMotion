@@ -41,24 +41,45 @@ We
 \section{Introduction}
 
 \section{Numerical Setup}
-We use simulations from the Abacus project \cite{abacus}. 
 
-We use the simulation boxes with size $L_{\rm box}=720$\hMpc simulated
+We use simulations boxes from the Abacus project \cite{abacus}. 
+Each box has a size of $L_{\rm box}=720$\hMpc and was simulated
 with $1440^3$ particles and a resulting particle mass of $\sim 1\times
-10^{10}$\hMpc. 
-We use the set of 41 boxes with different $\omega$CDM cosmological
-parameters which are phase-matched to isolate cosmology dependences. 
-
+10^{10}$\hMpc.
+Each box also have 41 different $\omega$CDM cosmological parameters
+which are phase-matched to isolate cosmology dependences.
+In our analysis we use the Friends-of-Friends (FOF) catalogs built on
+the snapshot at redshift of $z=0.1$.
 
 \section{Sample Selection}
 
-We start by selectin all halos with a maximum circular velocity larger
-than $200$ \kms.
+We start by selecting all halos with a maximum circular velocity,
+in the range $200\kms < v_{\rm max}< 250 \kms$ 
 Then we proceed to use these halos to find what we call an Isolated Pair
 (IP).
 IPs are two halos, $A$ and $B$, that do not have any other third halo
-closer than the $AB$ separation; in other words in IPs the two halos
-are mutually its closest neighbor.
+with $v_{\rm max}>200$\kms closer than the pair separation.
+We follow a convention where $A$ refers to the least massive halo in
+the pair.
+
+From this pair we measure the following quantities: the maximum
+circular velocity for the two halos, peculiar velocities $\vec{v}_p$, 
+separation vector $\vec{r}_{AB}$, tangential velocity of $B$ with
+respect to $A$, $v_{t}$ and the radial velocity of $B$ with respect
+to $B$ after taking into account Hubble expansion $v_r$.
+
+From the IP sample we select the pairs with some similarity to the
+observed LG. 
+The conditions we impose are the following: the maximum
+circular velocity should for both halos in the pair must be less than
+$250$ \kms, the relative radial velocity should be negative and the
+magnitude of the tangential velocity should be lower than the
+magnitude of the radial velocity. 
+We refer to this sample simply as the pair sample. 
+Only about $1\%$ of the halos in the initial sample are found in
+the pair sample. 
+This is consistent with previous results that show that the fraction
+of LG pairs in a cosmological context 
 
 \section{Results}
 
