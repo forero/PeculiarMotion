@@ -7,7 +7,7 @@ from astropy.table import Table
 import h5py
 
 def compute_pairs_FOF_abacus_box(BoxID=0):
-    basePath = "/Users/forero/github/abacus/data/AbacusCosmos_720box_{:02d}_FoF_halos_z0.100/".format(BoxID)
+    basePath = "/Users/forero/data/AbacusCosmos/AbacusCosmos_720box_{:02d}_FoF_halos_z0.100/".format(BoxID)
     
     print("Started reading the data")
     halo_data = ach.read_halos_FoF(basePath)
@@ -15,7 +15,10 @@ def compute_pairs_FOF_abacus_box(BoxID=0):
     
     BoxSize = 720.0
     halo_data['pos'] = halo_data['pos']+BoxSize/2.0
-
+    print("started sorting")
+    halo_data = np.sort(halo_data, order='vcirc_max')
+    print("finished sorting")
+    
     print("Vcirc selection")
     ii = halo_data['vcirc_max']>200 # in units of km/s
     S_pos = halo_data['pos'][ii]
@@ -79,6 +82,6 @@ def compute_pairs_FOF_abacus_box(BoxID=0):
     h5f.close()
     return 
 
-for i in range(0):
+for i in range(40):
     compute_pairs_FOF_abacus_box(BoxID=i)
     
