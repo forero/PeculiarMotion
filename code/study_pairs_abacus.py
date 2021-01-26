@@ -31,11 +31,13 @@ def load_box(BoxID=0):
     data['vel_AB_rad'] = data['vel_AB_rad'] + (data['pos_AB'] * hubble)
 
     # here we compute the compute the dot product between the position vector and the radial velocity
-    data['mu'] = np.abs(np.sum((data['pos_B']-data['pos_A'])*(data['vel_B']), axis=1)/(data['vel_B_mag']*data['pos_AB']))
+    data['mu'] = np.sum((data['pos_B']-data['pos_A'])*(data['vel_B']), axis=1)/(data['vel_B_mag']*data['pos_AB'])
+    data['mu_vv'] = np.sum(data['vel_A']*data['vel_B'], axis=1)/(data['vel_A_mag']*data['vel_B_mag'])
+
 
     datos = {}
     ii = (data['pos_A'][:,0] > 10) & (data['pos_A'][:,0]<710)
-    keys = ['vel_A_mag', 'vel_B_mag', 'pos_AB', 'vel_AB', 'vel_AB_rad', 'vel_AB_tan', 'vmax_A', 'vmax_B', 'mu']
+    keys = ['vel_A_mag', 'vel_B_mag', 'pos_AB', 'vel_AB', 'vel_AB_rad', 'vel_AB_tan', 'vmax_A', 'vmax_B', 'mu', 'mu_vv']
     for kk in keys:
         datos[kk] = data[kk][ii]
     keys = ['vel_G_mag', 'vmax_G']
@@ -53,7 +55,7 @@ def count_pairs_FOF_abacus_box(BoxID=0):
     # Selection in vmax
     ii = (data['vmax_A']<240) & (data['vmax_B']<240) 
     ii &= (data['vel_AB_rad']<0) 
-    ii &= (np.abs(data['vel_AB_rad'])>data['vel_AB_tan'])
+    ii &= (np.abs(data['vel_AB_rad'])>np.abs(data['vel_AB_tan']))
     
     ll = (data['vmax_G']<240)
     
