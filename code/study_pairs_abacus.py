@@ -4,8 +4,11 @@ import matplotlib.pyplot as plt
 import numpy as np
 import h5py
 
-def load_box(BoxID=0):
-    filename = '../data/pairs_box_{:02d}.hdf5'.format(BoxID)
+def load_box(BoxID=0, fixed_cosmo=True):
+    if fixed_cosmo:
+        filename = '../data/pairs_planck_00_box_{:02d}.hdf5'.format(BoxID)
+    else:
+        filename = '../data/pairs_box_{:02d}.hdf5'.format(BoxID)
     data = {}
     f = h5py.File(filename, 'r')
     for k in f.keys():
@@ -52,7 +55,7 @@ def count_pairs_FOF_abacus_box(BoxID=0):
     print("processing box ", BoxID)
     vlim = {'mean':627, 'sigma':22}
 
-    # Selection in vmax
+    # Selection in vmax and kinematics
     ii = (data['vmax_A']<240) & (data['vmax_B']<240) 
     ii &= (data['vel_AB_rad']<0) 
     ii &= (np.abs(data['vel_AB_rad'])>np.abs(data['vel_AB_tan']))

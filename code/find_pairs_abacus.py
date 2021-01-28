@@ -7,7 +7,7 @@ from astropy.table import Table
 import h5py
 
 def compute_pairs_FOF_abacus_box(BoxID=0):
-    basePath = "/Users/forero/data/AbacusCosmos/AbacusCosmos_720box_{:02d}_FoF_halos_z0.100/".format(BoxID)
+    basePath = "/Users/forero/data/AbacusCosmos/AbacusCosmos_720box_planck_00_{:02d}_FoF_halos_z0.100/".format(BoxID)
     
     print("Started reading the data")
     halo_data = ach.read_halos_FoF(basePath)
@@ -66,7 +66,7 @@ def compute_pairs_FOF_abacus_box(BoxID=0):
     print("Finished isolation computation")
     print("Pairs found:", n_pairs)
     
-    filename = '../data/pairs_box_{:02d}.hdf5'.format(BoxID)
+    filename = '../data/pairs_planck_00_box_{:02d}.hdf5'.format(BoxID)
     print("Started writing data to ", filename)
 
     h5f = h5py.File(filename, 'w')
@@ -82,6 +82,6 @@ def compute_pairs_FOF_abacus_box(BoxID=0):
     h5f.close()
     return 
 
-for i in range(40):
+for i in range(0):
     compute_pairs_FOF_abacus_box(BoxID=i)
     
