@@ -24,6 +24,7 @@ def compute_pairs_FOF_abacus_box(BoxID=0):
     S_pos = halo_data['pos'][ii]
     S_vel = halo_data['vel'][ii]
     S_vmax = halo_data['vcirc_max'][ii]
+    S_mass = halo_data['N'][ii]
     S_parent_fof = halo_data['id'][ii]
     n_S = len(S_pos)
     print("Number of halos selected:", n_S)
@@ -72,6 +73,8 @@ def compute_pairs_FOF_abacus_box(BoxID=0):
     h5f = h5py.File(filename, 'w')
     h5f.create_dataset('pos_A', data=S_pos[halo_A_id,:])
     h5f.create_dataset('pos_B', data=S_pos[halo_B_id,:])
+    h5f.create_dataset('mass_A', data=S_mass[halo_A_id])
+    h5f.create_dataset('mass_B', data=S_mass[halo_B_id])
     h5f.create_dataset('pos_G', data=S_pos)
     h5f.create_dataset('vel_A', data=S_vel[halo_A_id,:])
     h5f.create_dataset('vel_B', data=S_vel[halo_B_id,:])
@@ -82,6 +85,6 @@ def compute_pairs_FOF_abacus_box(BoxID=0):
     h5f.close()
     return 
 
-for i in range(0):
+for i in range(40):
     compute_pairs_FOF_abacus_box(BoxID=i)
     
