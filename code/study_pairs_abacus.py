@@ -1,12 +1,13 @@
-import illustris_python.groupcat as gc
+#import illustris_python.groupcat as gc
 from sklearn.neighbors import NearestNeighbors
 import matplotlib.pyplot as plt
 import numpy as np
 import h5py
+import os
 
-def load_box(BoxID=0, fixed_cosmo=True):
+def load_box(data_path, BoxID=0, fixed_cosmo=True):
     if fixed_cosmo:
-        filename = '../data/pairs_planck_00_box_{:02d}.hdf5'.format(BoxID)
+        filename = os.path.join(data_path, 'abacus','pairs_planck_00_box_{:02d}.hdf5'.format(BoxID))
     else:
         filename = '../data/pairs_box_{:02d}.hdf5'.format(BoxID)
     data = {}
@@ -18,7 +19,7 @@ def load_box(BoxID=0, fixed_cosmo=True):
     
     dtype=[('BoxID','i8'), ('hubble', 'f8'), ('omega_de', 'f8'),
       ('omega_m', 'f8'), ('n_s', 'f8'), ('sigma_8', 'f8'), ('w_0', 'f8')]
-    cosmo_data = np.loadtxt("../data/box_cosmo_params.dat", dtype=dtype)
+    cosmo_data = np.loadtxt(os.path.join(data_path, "abacus", "box_cosmo_params.dat"), dtype=dtype)
     hubble = cosmo_data['hubble'][BoxID]
     
     # compute center of mass velocity
