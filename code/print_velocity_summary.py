@@ -68,9 +68,9 @@ ii = (datos['vel_AB_rad']<0) & (datos['pos_AB']<1.0) & ((datos['mass_A']*1E10 < 
 cm_vel = v_cm_norm[ii]
 tan_vel = datos['vel_AB_tan'][ii]
 rad_vel = datos['vel_AB_rad'][ii]
+tot_mass = datos['mass_A'][ii]+ datos['mass_B'][ii]
 
-
-results  = np.array([cm_vel, tan_vel, rad_vel])
+results  = np.array([cm_vel, tan_vel, rad_vel, tot_mass])
 
 print(np.shape(results))
 
@@ -78,7 +78,7 @@ print(np.shape(results))
 
 # write positions
 fileout = '../data/abacus/summary_velocities_abacus_planck_00_box_{:02d}.dat'.format(BoxID)
-np.savetxt(fileout, results.T, fmt='%f %f %f')
+np.savetxt(fileout, results.T, fmt='%f %f %f %f')
 print(' wrote results data to {}'.format(fileout))
 
 
